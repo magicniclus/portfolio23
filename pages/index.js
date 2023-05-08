@@ -1,3 +1,25 @@
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import Nav from "../components/organismes/navigations/Nav";
+import Layout from "../components/layout/Layout";
+import Footer from "../components/organismes/footer/Footer";
+
 export default function Home() {
-  return <h1 className="text-3xl font-bold">Hello de BORDEAUX!</h1>;
+  const state = useState((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({ type: "LOADER", payload: true });
+  }, []);
+
+  return (
+    <Layout>
+      <header>
+        <Nav />
+      </header>
+      <main></main>
+      <Footer />
+    </Layout>
+  );
 }
