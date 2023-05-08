@@ -1,4 +1,6 @@
-const initState = {};
+const initState = {
+  loader: false,
+};
 
 const reducer = (state = initState, action) => {
   switch (action.type) {
