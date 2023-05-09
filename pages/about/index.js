@@ -36,12 +36,14 @@ const index = () => {
           </div>
           <div className="flex min-w-[150px] mt-16">
             <ColumnWithTitle
+              column={2}
               title="LEARNING"
               lign={personalInformations.learning}
             />
           </div>
           <div className="flex min-w-[150px] mt-16">
             <ColumnWithTitle
+              column={3}
               title="CERTIFICATIONS"
               lign={personalInformations.certification}
             />
