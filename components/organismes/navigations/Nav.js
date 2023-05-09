@@ -179,7 +179,11 @@ const Nav = (props) => {
             </div>
           </Link>
         ) : (
-          <Link href="/" className="font-bold text-5xl text-clear flex">
+          <Link
+            href="/"
+            className="font-bold text-5xl text-clear flex"
+            onClick={handleClick}
+          >
             <div className="overflow-hidden">
               <span className=" inline-block translate-x-10" ref={refAboutOne}>
                 A
