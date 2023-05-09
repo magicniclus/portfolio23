@@ -16,14 +16,14 @@ const TextContainer = () => {
         targets,
         { y: 0, opacity: 1 },
         {
-          duration: 0.5,
+          duration: 0.3,
           y: -200,
           opacity: 0,
           ease: "power5.out",
           stagger: {
             amount: 0.3,
             from: 0,
-            each: 0.5,
+            each: 0.3,
           },
         }
       );
