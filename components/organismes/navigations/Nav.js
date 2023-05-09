@@ -50,9 +50,6 @@ const Nav = (props) => {
           duration: 0.5,
           x: 0,
           ease: "power5.out",
-          amount: 0.4,
-          from: 0,
-          function: (i) => (i === 0 ? 0 : 0.4 * i),
         }
       );
     } else {
@@ -70,9 +67,6 @@ const Nav = (props) => {
           duration: 0.5,
           x: 0,
           ease: "power5.out",
-          amount: 0.4,
-          from: 0,
-          function: (i) => (i === 0 ? 0 : 0.4 * i),
         }
       );
     }
@@ -101,9 +95,6 @@ const Nav = (props) => {
           duration: 0.5,
           x: 50,
           ease: "power5.out",
-          amount: 0.4,
-          from: 0,
-          function: (i) => (i === 0 ? 0 : 0.4 * i),
         }
       );
     } else {
@@ -121,9 +112,6 @@ const Nav = (props) => {
           duration: 0.5,
           x: 50,
           ease: "power5.out",
-          amount: 0.4,
-          from: 0,
-          function: (i) => (i === 0 ? 0 : 0.4 * i),
         }
       );
     }
