@@ -30,6 +30,7 @@ module.exports = {
       },
       colors: {
         clear: "#EDEAE6",
+        clearImmediate: "#686868",
         dark: "#373634",
         purple: "#4F46E5",
         purpleLight: "#DCDBEB",
