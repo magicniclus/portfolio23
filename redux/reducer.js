@@ -1,6 +1,7 @@
 const initState = {
   loader: false,
   changePage: false,
+  firstView: true,
 };
 
 const reducer = (state = initState, action) => {
@@ -10,6 +11,13 @@ const reducer = (state = initState, action) => {
         ...state,
         changePage: action.payload,
       };
+
+    case "UPDATE_FIRST_VIEW":
+      return {
+        ...state,
+        firstView: action.payload,
+      };
+
     default:
       return state;
   }
