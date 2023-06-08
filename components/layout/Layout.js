@@ -20,7 +20,7 @@ const Layout = (props) => {
           }
         /> */}
       </Head>
-      <div className="h-screen bg-dark w-screen flex flex-col justify-between mx-auto max-w-[2000px]">
+      <div className="min-h-screen bg-dark w-screen flex flex-col justify-between item-center mx-auto max-w-[2000px]">
         {props.children}
       </div>
     </>
