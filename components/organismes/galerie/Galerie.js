@@ -89,7 +89,7 @@ const Galerie = () => {
 
   return (
     <div
-      className="flex justify-between mx-auto max-w-fit"
+      className="flex justify-between mx-auto max-w-fit shadow-xl rounded-b-lg overflow-hidden"
       onMouseLeave={updateAllRef}
     >
       {project.map((item, idx) => (
