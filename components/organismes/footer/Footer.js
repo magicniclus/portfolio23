@@ -85,7 +85,7 @@ const Footer = (props) => {
       <h2
         ref={titleRef}
         className="font-light text-xs"
-        style={{ color: color }}
+        style={{ color: color || "#F2F2F2" }}
       >
         Front-end developer
       </h2>
