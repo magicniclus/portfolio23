@@ -28,7 +28,11 @@ const Nav = (props) => {
   const button = props.button || "ABOUT";
 
   const router = useRouter();
-  const name = button != "ABOUT" ? "ABOUT" : "NICOLAS";
+  const name = !props.name
+    ? button != "ABOUT"
+      ? "ABOUT"
+      : "NICOLAS"
+    : props.name;
 
   useEffect(() => {
     gsap.fromTo(
