@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { project } from "../../data/projects";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
@@ -11,6 +11,27 @@ const Projet = ({ post }) => {
     gsap.fromTo(titleRef.current, { opacity: 0 }, { opacity: 1, duration: 2 });
   }, []);
 
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+  const [mouseEnterInImg, setMouseEnterInImg] = useState(false);
+
+  const handleMouseMove = (e) => {
+    let rect = e.target.getBoundingClientRect();
+    setCoordinates({
+      x: rect.width - (e.clientX - rect.left),
+      y: rect.height - (e.clientY - rect.top),
+    });
+  };
+
+  useEffect(() => {
+    if (mouseEnterInImg) {
+      window.addEventListener("mousemove", handleMouseMove);
+
+      return () => {
+        window.removeEventListener("mousemove", handleMouseMove);
+      };
+    } else null;
+  }, [mouseEnterInImg]);
+
   return (
     <ProjectLayout bg={post.color} text={post.textColor} all={post}>
       <main
@@ -22,9 +43,9 @@ const Projet = ({ post }) => {
             <div className="w-5/12 flex justify-between flex-col">
               <div></div>
               <div>
-                <a href={post.url} className="cursor-pointor">
+                <a href={post.url} className="cursor-pointor relative">
                   <img
-                    className="w-80 max-h-[250px] object-contain"
+                    className="w-48 max-h-[250px] object-contain"
                     src={post.logo}
                     alt="logo"
                   />
@@ -64,26 +85,40 @@ const Projet = ({ post }) => {
                 </li>
               </ul>
             </div>
-            <div className="w-7/12 overflow-hidden flex justify-end relative">
-              <img
-                src={post.desktop}
-                className="w-10/12 rounded-xl shadow-md"
-              />
-              <a href={post.url}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6 absolute bottom-5 right-5"
-                  style={{ color: post.textColor }}
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </a>
+            <div className="w-7/12 overflow-hidden flex justify-end items-end">
+              <div className="relative">
+                <img
+                  src={post.desktop}
+                  className="rounded-xl shadow-md"
+                  onMouseEnter={() => setMouseEnterInImg(true)}
+                  onMouseLeave={() => setMouseEnterInImg(false)}
+                />
+                <a href={post.url} className="absolute bottom-5 right-5">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="w-6 h-6"
+                    style={{ color: post.textColor }}
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </a>
+                <img
+                  src={post.mobil}
+                  className="w-36 object-contain rounded-xl"
+                  style={{
+                    position: `${mouseEnterInImg ? "fixed" : null}`,
+                    bottom: `${coordinates.y}px`,
+                    right: `${coordinates.x}px`,
+                    display: `${mouseEnterInImg ? "flex" : "none"}`,
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
