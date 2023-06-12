@@ -3,7 +3,8 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useSelector, useDispatch } from "react-redux";
 
-const Footer = () => {
+const Footer = (props) => {
+  const color = props.text;
   const gitRef = useRef(null);
   const linkdinRef = useRef(null);
   const twitterRef = useRef(null);
@@ -42,13 +43,18 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="w-full py-8 px-16 flex items-end justify-between">
-      <div className="flex">
+    <footer
+      className={`w-full py-8 px-16 flex items-end justify-${
+        props.reseauView ? "between" : "end"
+      }`}
+    >
+      <div className={`${props.reseauView ? "flex" : "hidden"}`}>
         <Link className="mr-5 overflow-hidden" href="/">
           <img
             ref={gitRef}
             className={makeClass}
             src="./img/reseaux/github.png"
+            style={{ color: color || "#EDEAE6" }}
           />
         </Link>
         <Link className="mr-5 overflow-hidden" href="/">
@@ -56,6 +62,7 @@ const Footer = () => {
             ref={linkdinRef}
             className={makeClass}
             src="./img/reseaux/linkdin.png"
+            style={{ color: color || "#EDEAE6" }}
           />
         </Link>
         <Link className="mr-5 overflow-hidden" href="/">
@@ -63,6 +70,7 @@ const Footer = () => {
             ref={twitterRef}
             className={makeClass}
             src="./img/reseaux/twitter.png"
+            style={{ color: color || "#EDEAE6" }}
           />
         </Link>
         <Link className=" overflow-hidden" href="/">
@@ -70,10 +78,15 @@ const Footer = () => {
             ref={mailRef}
             className={makeClass}
             src="./img/reseaux/mail.png"
+            style={{ color: color || "#EDEAE6" }}
           />
         </Link>
       </div>
-      <h2 ref={titleRef} className="font-light text-xs text-clear">
+      <h2
+        ref={titleRef}
+        className="font-light text-xs"
+        style={{ color: color }}
+      >
         Front-end developer
       </h2>
     </footer>
