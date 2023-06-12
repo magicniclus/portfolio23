@@ -37,7 +37,7 @@ export const project = [
     years: "2023",
     role: "Full-stack developer",
     client: "Adsventure",
-    url: "https://adventure-agency.com/",
+    url: "https://adsventure-agency.com/",
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ export const project = [
     desktop: "/img/projects/terabois/desktop.png",
     mobil: "/img/projects/adsventure/mobil.png",
     presentation: "/img/projects/terabois/presentation.jpg",
-    techno: ["React js", "Sass", "GSAP", "Strapi", "Redux"],
+    techno: ["Next js", "Tailwind", "GSAP", "Firebase", "Redux"],
     status: "Offline",
     textColor: "#4c5664",
     color: "#ffffff",
@@ -86,6 +86,5 @@ export const project = [
     years: "In progress",
     role: "Full-stack developer",
     client: "Portail-habitat",
-    url: "https://maprimerenov-info.org/",
   },
 ];
