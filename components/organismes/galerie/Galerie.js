@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 import { project } from "../../../data/projects";
 import gsap from "gsap";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 const Galerie = () => {
   const refs = useRef([]);
+  const bottomRefs = useRef();
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [imageAreLoaded, setImageAreLoaded] = useState(0); // [false, false, false, false, false, false, false, false, false, false
   const [hoveredImageWidth, setHoveredImageWidth] = useState(null);
   const [cursorPosition, setCursorPosition] = useState(null);
@@ -92,43 +96,92 @@ const Galerie = () => {
   }, [indexSelected, cursorPosition, hoveredImageWidth]);
 
   useEffect(() => {
-    if (!state.firstView && imageAreLoaded === project.length) {
-      refs.current.forEach((el, idx) => {
-        gsap.fromTo(
-          el,
-          { scaleY: 0.02, x: "1000px", opacity: 0 },
-          {
-            duration: 0.7,
-            delay: idx !== 0 ? 0.1 * idx - 0.05 : null,
-            scaleY: 1,
-            x: 0,
-            ease: "power3.out",
-            opacity: 1,
-          }
-        );
+    refs.current.forEach((el, idx) => {
+      const timeline = gsap.timeline({
+        defaults: {
+          duration: 0.5, // la moitié de la durée totale
+          delay: idx !== 0 ? 0.05 * idx : null,
+          ease: "sine.out",
+          scaleY: 0,
+          opacity: 0,
+        },
       });
+
+      timeline
+        .fromTo(
+          el,
+          {},
+          { scaleY: 1 } // état à 50%
+        )
+        .fromTo(
+          el,
+          { scaleY: 2, opacity: 1 }, // nous avons déjà défini l'état initial dans la première animation
+          { scaleY: 1, x: 0, opacity: 1 } // état final
+        );
+    });
+  }, []);
+
+  useEffect(() => {
+    gsap.set(bottomRefs.current, { clearProps: "all" });
+    if (state.changePage) {
+      gsap.fromTo(
+        bottomRefs.current,
+        { height: "0%" },
+        {
+          duration: 0.5,
+          height: "100%",
+          top: "0%",
+          ease: "power3.out",
+          onComplete: () => {
+            gsap.to(bottomRefs.current, {
+              duration: 0.5,
+              top: "0%",
+              ease: "power3.out",
+            });
+          },
+        }
+      );
     }
-  }, [state.firstView, imageAreLoaded, project.length]);
+  }, [state.changePage]);
+
+  const handleClick = (e, route, color) => {
+    e.preventDefault();
+    dispatch({
+      type: "UPDATE_PROJECT_IS_OPEN",
+      payload: { isOpen: true, color },
+    });
+    setTimeout(() => {
+      router.push(`/projects/${route}`);
+      dispatch({
+        type: "UPDATE_PROJECT_IS_OPEN",
+        payload: { isOpen: false, color: null },
+      });
+    }, 1200);
+  };
 
   return (
     <div
-      className="flex justify-between mx-auto max-w-fit rounded-b-lg overflow-hidden"
+      className="flex justify-between mx-auto max-w-fit rounded-b-lg relative"
       onMouseLeave={updateAllRef}
     >
+      <div
+        className="absolute right-0 w-full bg-dark z-30"
+        ref={bottomRefs}
+      ></div>
       {project.map((item, idx) => (
         <img
           onLoad={() => {
-            console.log("Image loaded");
             setImageAreLoaded((update) => update + 1);
           }}
           src={item.presentation}
           alt={item.title}
-          className="flex m-1 rounded-lg filter grayscale hover:grayscale-0 transition duration-500 ease-in-out cursor-pointer"
+          onClick={(e) => handleClick(e, item.title, item.color)}
+          className="flex m-1 rounded-lg filter grayscale hover:grayscale-0 transition duration-500 ease-in-out cursor-pointer opacity-0"
           style={{
             objectFit: "cover",
             height: "400px",
             width: "50px",
-            transform: "translateX(1000px)",
+            transform: "translateX(1500px)",
           }}
           onMouseEnter={() =>
             setIndexSelected((indexSelected) => ({
