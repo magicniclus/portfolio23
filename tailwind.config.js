@@ -29,9 +29,9 @@ module.exports = {
         ],
       },
       colors: {
-        clear: "#EDEAE6",
+        clear: "#F2F2F2",
         clearImmediate: "#686868",
-        dark: "#373634",
+        dark: "#313640",
         purple: "#4F46E5",
         purpleLight: "#DCDBEB",
       },
