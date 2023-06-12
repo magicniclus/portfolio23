@@ -24,7 +24,7 @@ const Projet = ({ post }) => {
               <div>
                 <a
                   target="_blank"
-                  href={post.url}
+                  href={post.url ? post.url : null}
                   className="cursor-pointor relative"
                 >
                   <img
@@ -73,8 +73,9 @@ const Projet = ({ post }) => {
                 <img src={post.desktop} className="rounded-xl shadow-md" />
                 <a
                   target="_blank"
-                  href={post.url}
+                  href={post.url ? post.url : null}
                   className="absolute bottom-5 right-5"
+                  style={{ display: post.url ? "block" : "none" }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
