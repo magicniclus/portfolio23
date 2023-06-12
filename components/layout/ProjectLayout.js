@@ -20,7 +20,13 @@ const ProjectLayout = (props) => {
         style={{ backgroundColor: props.bg }}
       >
         <header>
-          <Nav bg={props.bg} text={props.text || "clear"} />
+          <Nav
+            bg={props.bg}
+            text={props.text || "clear"}
+            post={props.all}
+            projectPage={true}
+            button="CLOSE"
+          />
         </header>
         {props.children}
         <Footer
