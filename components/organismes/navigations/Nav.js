@@ -3,9 +3,11 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 
 const Nav = (props) => {
   const dispatch = useDispatch();
+  const titleRef = useRef();
 
   const btnRef = useRef();
 
@@ -228,9 +230,40 @@ const Nav = (props) => {
     );
   };
 
+  const handleCloseButton = () => {
+    return (
+      <a href="/" className="flex items-center flex-col">
+        {/* <h1
+          ref={titleRef}
+          className="text-xs text-center font-bold"
+          style={{ color: props.post.textColor }}
+        >
+          {capitalizeFirstLetter(props.post.title)}
+        </h1> */}
+        {/* <div
+          className={`w-4 h-0.5 rotate-90 mt-3`}
+          style={{ backgroundColor: props.post.textColor }}
+        ></div> */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill={props.post.textColor}
+          className="w-4 h-4 mt-3"
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </a>
+    );
+  };
+
   return (
     <div className={`w-full py-8 px-16 flex items-end justify-between`}>
       {handleName(props.text)}
+      {/* {props.projectPage ? handleCloseButton() : null} */}
       <div className="overflow-hidden">
         <Link href={button === "CLOSE" ? "/" : "/about"}>
           <span
