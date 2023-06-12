@@ -142,7 +142,7 @@ const Nav = (props) => {
           <Link
             href="/"
             className="font-bold text-5xl flex"
-            style={{ color: color || "#EDEAE6" }}
+            style={{ color: color || "#F2F2F2" }}
           >
             <div className="overflow-hidden">
               <span className=" inline-block translate-x-10" ref={refNameOne}>
@@ -189,7 +189,7 @@ const Nav = (props) => {
           <Link
             href="/"
             className="font-bold text-5xl flex"
-            style={{ color: color || "#EDEAE6" }}
+            style={{ color: color || "#F2F2F2" }}
             onClick={handleClick}
           >
             <div className="overflow-hidden">
@@ -268,7 +268,7 @@ const Nav = (props) => {
         <Link href={button === "CLOSE" ? "/" : "/about"}>
           <span
             className="text-xs underline cursor-pointer inline-block translate-y-6"
-            style={{ color: props.text || "#EDEAE6" }}
+            style={{ color: props.text || "#F2F2F2" }}
             ref={btnRef}
             onClick={handleClick}
           >
