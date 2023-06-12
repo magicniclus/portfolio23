@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { project } from "../../data/projects";
 import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
@@ -11,39 +11,22 @@ const Projet = ({ post }) => {
     gsap.fromTo(titleRef.current, { opacity: 0 }, { opacity: 1, duration: 2 });
   }, []);
 
-  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
-  const [mouseEnterInImg, setMouseEnterInImg] = useState(false);
-
-  const handleMouseMove = (e) => {
-    let rect = e.target.getBoundingClientRect();
-    setCoordinates({
-      x: rect.width - (e.clientX - rect.left),
-      y: rect.height - (e.clientY - rect.top),
-    });
-  };
-
-  useEffect(() => {
-    if (mouseEnterInImg) {
-      window.addEventListener("mousemove", handleMouseMove);
-
-      return () => {
-        window.removeEventListener("mousemove", handleMouseMove);
-      };
-    } else null;
-  }, [mouseEnterInImg]);
-
   return (
     <ProjectLayout bg={post.color} text={post.textColor} all={post}>
       <main
         className="w-screen flex justify-center items-center h-full min-h-[calc(100vh-112px-80px)] px-16"
         style={{ backgroundColor: post.color }}
       >
-        <div className="flex flex-col justify-around h-full w-screen">
-          <div className="flex justify-around">
+        <div className="flex flex-col justify-between h-full w-screen">
+          <div className="flex justify-between">
             <div className="w-5/12 flex justify-between flex-col">
               <div></div>
               <div>
-                <a href={post.url} className="cursor-pointor relative">
+                <a
+                  target="_blank"
+                  href={post.url}
+                  className="cursor-pointor relative"
+                >
                   <img
                     className="w-48 max-h-[250px] object-contain"
                     src={post.logo}
@@ -85,15 +68,14 @@ const Projet = ({ post }) => {
                 </li>
               </ul>
             </div>
-            <div className="w-7/12 overflow-hidden flex justify-end items-end">
+            <div className="w-6/12 flex justify-end items-end">
               <div className="relative">
-                <img
-                  src={post.desktop}
-                  className="rounded-xl shadow-md"
-                  onMouseEnter={() => setMouseEnterInImg(true)}
-                  onMouseLeave={() => setMouseEnterInImg(false)}
-                />
-                <a href={post.url} className="absolute bottom-5 right-5">
+                <img src={post.desktop} className="rounded-xl shadow-md" />
+                <a
+                  target="_blank"
+                  href={post.url}
+                  className="absolute bottom-5 right-5"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -108,16 +90,6 @@ const Projet = ({ post }) => {
                     />
                   </svg>
                 </a>
-                <img
-                  src={post.mobil}
-                  className="w-36 object-contain rounded-xl"
-                  style={{
-                    position: `${mouseEnterInImg ? "fixed" : null}`,
-                    bottom: `${coordinates.y}px`,
-                    right: `${coordinates.x}px`,
-                    display: `${mouseEnterInImg ? "flex" : "none"}`,
-                  }}
-                />
               </div>
             </div>
           </div>
