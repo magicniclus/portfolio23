@@ -26,6 +26,7 @@ const ProjectLayout = (props) => {
             post={props.all}
             projectPage={true}
             button="CLOSE"
+            name="NICOLAS"
           />
         </header>
         {props.children}
