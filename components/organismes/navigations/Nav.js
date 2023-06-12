@@ -24,6 +24,7 @@ const Nav = (props) => {
   const refAboutFive = useRef();
 
   const button = props.button || "ABOUT";
+
   const router = useRouter();
   const name = button != "ABOUT" ? "ABOUT" : "NICOLAS";
 
@@ -132,11 +133,15 @@ const Nav = (props) => {
     );
   };
 
-  const handleName = () => {
+  const handleName = (color) => {
     return (
       <>
         {name === "NICOLAS" ? (
-          <Link href="/" className="font-bold text-5xl text-clear flex">
+          <Link
+            href="/"
+            className="font-bold text-5xl flex"
+            style={{ color: color || "#EDEAE6" }}
+          >
             <div className="overflow-hidden">
               <span className=" inline-block translate-x-10" ref={refNameOne}>
                 N
@@ -181,7 +186,8 @@ const Nav = (props) => {
         ) : (
           <Link
             href="/"
-            className="font-bold text-5xl text-clear flex"
+            className="font-bold text-5xl flex"
+            style={{ color: color || "#EDEAE6" }}
             onClick={handleClick}
           >
             <div className="overflow-hidden">
@@ -223,12 +229,13 @@ const Nav = (props) => {
   };
 
   return (
-    <div className="w-full py-8 px-16 flex items-end justify-between">
-      {handleName()}
+    <div className={`w-full py-8 px-16 flex items-end justify-between`}>
+      {handleName(props.text)}
       <div className="overflow-hidden">
         <Link href={button === "CLOSE" ? "/" : "/about"}>
           <span
-            className="text-xs text-clear underline cursor-pointer inline-block translate-y-6"
+            className="text-xs underline cursor-pointer inline-block translate-y-6"
+            style={{ color: props.text || "#EDEAE6" }}
             ref={btnRef}
             onClick={handleClick}
           >
