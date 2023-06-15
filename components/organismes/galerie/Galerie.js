@@ -183,7 +183,13 @@ const Galerie = () => {
         await Promise.all(promises);
 
         console.log("All images loaded successfully");
-        setAreImagesLoaded(true);
+        if (state.firstView) {
+          setTimeout(() => {
+            setAreImagesLoaded(true);
+          }, 1000);
+        } else {
+          setAreImagesLoaded(true);
+        }
       } catch (err) {
         console.error("Failed to load images", err);
       }
@@ -194,7 +200,7 @@ const Galerie = () => {
 
   return (
     <>
-      {!areImagesLoaded ? (
+      {areImagesLoaded ? (
         <div
           className="flex justify-between mx-auto max-w-fit rounded-b-lg relative"
           onMouseLeave={updateAllRef}
