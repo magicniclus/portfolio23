@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { project } from "../../data/projects";
-import { capitalizeFirstLetter } from "../../utils/capitalizeFirstLetter";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import ProjectLayout from "../../components/layout/ProjectLayout";
 
 const Projet = ({ post }) => {
@@ -33,25 +33,35 @@ const Projet = ({ post }) => {
                     alt="logo"
                   />
                 </a>
-                <ul className="flex mt-5">
-                  {post.techno.map((item, index) => (
-                    <li
-                      className="text-xs"
-                      style={{ color: post.textColor }}
-                      key={index}
-                    >
-                      {item}
-                      {index !== post.techno.length - 1 ? (
-                        <span
-                          className="mx-2"
-                          style={{ color: post.textColor }}
-                        >
-                          -
-                        </span>
-                      ) : null}
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex items-end mt-5">
+                  <ul className="flex">
+                    {post.techno.map((item, index) => (
+                      <li
+                        className="text-xs"
+                        style={{ color: post.textColor }}
+                        key={index}
+                      >
+                        {item}
+                        {index !== post.techno.length - 1 ? (
+                          <span
+                            className="mx-2"
+                            style={{ color: post.textColor }}
+                          >
+                            -
+                          </span>
+                        ) : null}
+                      </li>
+                    ))}
+                  </ul>
+                  {post.url ? (
+                    <a href={post.url} target="_blank">
+                      <ArrowUpRightIcon
+                        className="w-4 h-4 ml-4"
+                        style={{ color: post.textColor }}
+                      />
+                    </a>
+                  ) : null}
+                </div>
               </div>
               <ul className="text-xs" style={{ color: post.textColor }}>
                 <li className="mt-1">
