@@ -54,7 +54,7 @@ const Footer = (props) => {
             ref={gitRef}
             className={makeClass}
             src="./img/reseaux/github.png"
-            style={{ color: color || "#F2F2F2" }}
+            style={{ color: color || "#D9D9D9" }}
           />
         </Link>
         <Link className="mr-5 overflow-hidden" href="/">
@@ -62,7 +62,7 @@ const Footer = (props) => {
             ref={linkdinRef}
             className={makeClass}
             src="./img/reseaux/linkdin.png"
-            style={{ color: color || "#F2F2F2" }}
+            style={{ color: color || "#D9D9D9" }}
           />
         </Link>
         <Link className="mr-5 overflow-hidden" href="/">
@@ -70,7 +70,7 @@ const Footer = (props) => {
             ref={twitterRef}
             className={makeClass}
             src="./img/reseaux/twitter.png"
-            style={{ color: color || "#F2F2F2" }}
+            style={{ color: color || "#D9D9D9" }}
           />
         </Link>
         <Link className=" overflow-hidden" href="/">
@@ -78,14 +78,14 @@ const Footer = (props) => {
             ref={mailRef}
             className={makeClass}
             src="./img/reseaux/mail.png"
-            style={{ color: color || "#F2F2F2" }}
+            style={{ color: color || "#D9D9D9" }}
           />
         </Link>
       </div>
       <h2
         ref={titleRef}
         className="font-light text-xs"
-        style={{ color: color || "#F2F2F2" }}
+        style={{ color: color || "#D9D9D9" }}
       >
         Front-end developer
       </h2>
