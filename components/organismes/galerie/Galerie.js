@@ -186,7 +186,7 @@ const Galerie = () => {
         if (state.firstView) {
           setTimeout(() => {
             setAreImagesLoaded(true);
-          }, 1000);
+          }, 2000);
         } else {
           setAreImagesLoaded(true);
         }
