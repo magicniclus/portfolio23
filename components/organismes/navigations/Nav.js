@@ -3,7 +3,6 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-import { capitalizeFirstLetter } from "../../../utils/capitalizeFirstLetter";
 
 const Nav = (props) => {
   const dispatch = useDispatch();
@@ -146,7 +145,7 @@ const Nav = (props) => {
           <Link
             href="/"
             className="font-bold text-5xl flex"
-            style={{ color: color || "#F2F2F2" }}
+            style={{ color: color || "#D9D9D9" }}
           >
             <div className="overflow-hidden">
               <span className=" inline-block translate-x-10" ref={refNameOne}>
@@ -193,7 +192,7 @@ const Nav = (props) => {
           <Link
             href="/"
             className="font-bold text-5xl flex"
-            style={{ color: color || "#F2F2F2" }}
+            style={{ color: color || "#D9D9D9" }}
             onClick={handleClick}
           >
             <div className="overflow-hidden">
@@ -272,7 +271,7 @@ const Nav = (props) => {
         <Link href={button === "CLOSE" ? "/" : "/about"}>
           <span
             className="text-xs underline cursor-pointer inline-block translate-y-6"
-            style={{ color: props.text || "#F2F2F2" }}
+            style={{ color: props.text || "#D9D9D9" }}
             ref={btnRef}
             onClick={handleClick}
           >
