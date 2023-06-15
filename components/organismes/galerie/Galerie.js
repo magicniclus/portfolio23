@@ -3,13 +3,13 @@ import { useRouter } from "next/router";
 import { project } from "../../../data/projects";
 import gsap from "gsap";
 import { useSelector, useDispatch } from "react-redux";
+import Loader from "../loader/Loader";
 
 const Galerie = () => {
   const refs = useRef([]);
   const bottomRefs = useRef();
   const router = useRouter();
   const dispatch = useDispatch();
-  const [imageAreLoaded, setImageAreLoaded] = useState(0); // [false, false, false, false, false, false, false, false, false, false
   const [hoveredImageWidth, setHoveredImageWidth] = useState(null);
   const [cursorPosition, setCursorPosition] = useState(null);
   const [indexSelected, setIndexSelected] = useState({
@@ -19,6 +19,7 @@ const Galerie = () => {
     nextOne: null,
     nextTwo: null,
   });
+  const [areImagesLoaded, setAreImagesLoaded] = useState(false);
 
   const state = useSelector((state) => state);
 
@@ -119,7 +120,7 @@ const Galerie = () => {
           { scaleY: 1, x: 0, opacity: 1 } // état final
         );
     });
-  }, []);
+  }, [areImagesLoaded]);
 
   useEffect(() => {
     gsap.set(bottomRefs.current, { clearProps: "all" });
@@ -159,56 +160,91 @@ const Galerie = () => {
     }, 1200);
   };
 
+  useEffect(() => {
+    const loadImages = async () => {
+      if (!project) {
+        console.log("project is not defined yet");
+        return;
+      }
+
+      try {
+        const promises = project.map((item) => {
+          return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = item.presentation;
+            img.onload = () => {
+              console.log(`Image ${item.presentation} loaded successfully`);
+              resolve();
+            };
+            img.onerror = reject;
+          });
+        });
+
+        await Promise.all(promises);
+
+        console.log("All images loaded successfully");
+        setAreImagesLoaded(true);
+      } catch (err) {
+        console.error("Failed to load images", err);
+      }
+    };
+
+    loadImages();
+  }, []);
+
   return (
-    <div
-      className="flex justify-between mx-auto max-w-fit rounded-b-lg relative"
-      onMouseLeave={updateAllRef}
-    >
-      <div
-        className="absolute right-0 w-full bg-dark z-30"
-        ref={bottomRefs}
-      ></div>
-      {project.map((item, idx) => (
-        <img
-          onLoad={() => {
-            setImageAreLoaded((update) => update + 1);
-          }}
-          src={item.presentation}
-          alt={item.title}
-          onClick={(e) => handleClick(e, item.title, item.color)}
-          className="flex m-1 rounded-lg filter grayscale hover:grayscale-0 transition duration-500 ease-in-out cursor-pointer opacity-0"
-          style={{
-            objectFit: "cover",
-            height: "400px",
-            width: "50px",
-            transform: "translateX(1500px)",
-          }}
-          onMouseEnter={() =>
-            setIndexSelected((indexSelected) => ({
-              ...indexSelected,
-              select: idx,
-              previousOne: idx - 1,
-              previousTwo: idx - 2,
-              nextOne: idx + 1,
-              nextTwo: idx + 2,
-            }))
-          }
-          onMouseLeave={() =>
-            setIndexSelected((indexSelected) => ({
-              ...indexSelected,
-              select: null,
-              previousOne: null,
-              previousTwo: null,
-              nextOne: null,
-              nextTwo: null,
-            }))
-          }
-          onMouseMove={(event) => handleMouseMove(event, idx)}
-          ref={(el) => (refs.current[idx] = el)}
-          key={idx}
-        />
-      ))}
-    </div>
+    <>
+      {!areImagesLoaded ? (
+        <div
+          className="flex justify-between mx-auto max-w-fit rounded-b-lg relative"
+          onMouseLeave={updateAllRef}
+        >
+          <div
+            className="absolute right-0 w-full bg-dark z-30"
+            ref={bottomRefs}
+          ></div>
+          {project.map((item, idx) => (
+            <img
+              src={item.presentation}
+              alt={item.title}
+              onClick={(e) => handleClick(e, item.title, item.color)}
+              className="flex m-1 rounded-lg filter grayscale hover:grayscale-0 transition duration-500 ease-in-out cursor-pointer opacity-0"
+              style={{
+                objectFit: "cover",
+                height: "400px",
+                width: "50px",
+                transform: "translateX(1500px)",
+              }}
+              onMouseEnter={() =>
+                setIndexSelected((indexSelected) => ({
+                  ...indexSelected,
+                  select: idx,
+                  previousOne: idx - 1,
+                  previousTwo: idx - 2,
+                  nextOne: idx + 1,
+                  nextTwo: idx + 2,
+                }))
+              }
+              onMouseLeave={() =>
+                setIndexSelected((indexSelected) => ({
+                  ...indexSelected,
+                  select: null,
+                  previousOne: null,
+                  previousTwo: null,
+                  nextOne: null,
+                  nextTwo: null,
+                }))
+              }
+              onMouseMove={(event) => handleMouseMove(event, idx)}
+              ref={(el) => (refs.current[idx] = el)}
+              key={idx}
+            />
+          ))}
+        </div>
+      ) : (
+        <Loader />
+      )}
+    </>
   );
 };
 
