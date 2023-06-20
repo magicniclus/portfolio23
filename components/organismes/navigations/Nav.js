@@ -144,7 +144,7 @@ const Nav = (props) => {
         {name === "NICOLAS" ? (
           <Link
             href="/"
-            className="font-bold text-5xl flex"
+            className="font-bold text-3xl md:text-5xl flex"
             style={{ color: color || "#D9D9D9" }}
           >
             <div className="overflow-hidden">
@@ -264,7 +264,7 @@ const Nav = (props) => {
   };
 
   return (
-    <div className={`w-full py-8 px-16 flex items-end justify-between`}>
+    <div className={`w-full py-8 px-3 md:px-16 flex items-end justify-between`}>
       {handleName(props.text)}
       {/* {props.projectPage ? handleCloseButton() : null} */}
       <div className="overflow-hidden">
