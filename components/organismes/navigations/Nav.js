@@ -191,7 +191,7 @@ const Nav = (props) => {
         ) : (
           <Link
             href="/"
-            className="font-bold text-5xl flex"
+            className="font-bold text-3xl md:text-5xl flex"
             style={{ color: color || "#D9D9D9" }}
             onClick={handleClick}
           >
@@ -236,17 +236,6 @@ const Nav = (props) => {
   const handleCloseButton = () => {
     return (
       <a href="/" className="flex items-center flex-col">
-        {/* <h1
-          ref={titleRef}
-          className="text-xs text-center font-bold"
-          style={{ color: props.post.textColor }}
-        >
-          {capitalizeFirstLetter(props.post.title)}
-        </h1> */}
-        {/* <div
-          className={`w-4 h-0.5 rotate-90 mt-3`}
-          style={{ backgroundColor: props.post.textColor }}
-        ></div> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
