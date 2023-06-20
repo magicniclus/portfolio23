@@ -50,7 +50,7 @@ const TextContainer = () => {
   }, []);
   return (
     <div>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden md:mt-0 mt-10">
         <p
           className="text-clear text-xs inline-block translate-y-24"
           ref={pOne}
