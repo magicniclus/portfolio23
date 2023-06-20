@@ -59,7 +59,7 @@ const FormulaireContact = () => {
     switch (formNumber) {
       case 0:
         return (
-          <div className="overflow-hidden w-10/12">
+          <div className="overflow-hidden">
             <input
               placeholder="Nom"
               className={makeInputClass}
@@ -367,9 +367,9 @@ const FormulaireContact = () => {
   };
 
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden md:my-0 my-20">
       <form
-        className="max-w-[350px] flex flex-col"
+        className="max-w-[350px] flex flex-col w-8/12 md:w-10/12"
         ref={formRef}
         onSubmit={handleSubmit}
       >
@@ -404,10 +404,10 @@ const FormulaireContact = () => {
           </div>
         </div>
       </form>
-      <div className="overflow-hidden">
+      <div className="overflow-hidden ">
         <div
           ref={barRef}
-          className="w-full h-0.5 bg-clear mt-1 max-w-[350px] translate-y-8 opacity-0"
+          className="h-0.5 bg-clear mt-1 w-8/12 md:w-10/12 max-w-[350px] translate-y-8 opacity-0"
         ></div>
       </div>
     </div>
