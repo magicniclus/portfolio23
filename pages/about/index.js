@@ -13,12 +13,12 @@ const index = () => {
       <header>
         <Nav button="CLOSE" />
       </header>
-      <main className="w-full px-16 flex h-full justify-between">
-        <div className="w-5/12 max-w-[500px] flex flex-col min-h-full justify-around">
+      <main className="w-full px-4 md:px-16 flex md:flex-row flex-col h-full justify-between">
+        <div className="w-full md:w-5/12 md:max-w-[500px] flex flex-col min-h-full justify-around">
           <TextContainer />
           <FormulaireContact />
         </div>
-        <div className="my-auto flex flex-col items-end">
+        <div className="my-auto hidden md:flex flex-col items-end">
           <div className="flex min-w-[150px]">
             <div className="flex min-w-[150px]">
               <ColumnWithTitle
