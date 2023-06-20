@@ -94,7 +94,7 @@ const Projet = ({ post }) => {
         style={{ backgroundColor: post.color }}
       >
         <div className="flex md:flex-row flex-col justify-between">
-          <div className="md:w-5/12  hidden md:flex justify-between flex-col">
+          <div className="md:w-5/12 hidden md:flex justify-between flex-col">
             <div></div>
             <div className="overflow-hidden">
               <a
@@ -173,10 +173,9 @@ const Projet = ({ post }) => {
               className="cursor-pointor relative overflow-hidden flex items-end "
             >
               <img
-                className="w-48 max-h-[250px] max-w-[50vw] object-contain opacity-0 translate-y-96"
+                className="w-48 max-h-[250px] max-w-[50vw] object-contain opacity-1 "
                 src={post.logo}
                 alt="logo"
-                ref={logoRef}
               />
               <ArrowUpRightIcon
                 className="w-4 h-4 ml-4 mb-2"
@@ -187,22 +186,22 @@ const Projet = ({ post }) => {
               className="text-xs overflow-hidden mt-5"
               style={{ color: post.textColor }}
             >
-              <li ref={statusRef} className="mt-1 opacity-0 ">
+              <li className="mt-1 opacity-1 ">
                 <div className=" overflow-hidden">
                   A <span className="mx-2"></span> STATUS: {post.status}
                 </div>
               </li>
-              <li ref={yearsRef} className="mt-1 ">
+              <li className="mt-1 ">
                 <div className=" overflow-hidden">
                   B <span className="mx-2"></span> COMPLETED: {post.years}
                 </div>
               </li>
-              <li ref={roleRef} className="mt-1 ">
+              <li className="mt-1 ">
                 <div className=" overflow-hidden">
                   C <span className="mx-2"></span> ROLE: {post.role}
                 </div>
               </li>
-              <li ref={clientRef} className="mt-1 ">
+              <li className="mt-1 ">
                 <div className=" overflow-hidden">
                   D <span className="mx-2"></span> CLIENT: {post.client}
                 </div>
