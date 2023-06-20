@@ -16,7 +16,7 @@ const ProjectLayout = (props) => {
         <meta name="language" content="fr" />
       </Head>
       <div
-        className="min-h-screen w-screen flex flex-col justify-between item-center mx-auto max-w-[2000px]"
+        className="min-h-screen w-screen flex flex-col justify-between item-center mx-auto"
         style={{ backgroundColor: props.bg }}
       >
         <header>
