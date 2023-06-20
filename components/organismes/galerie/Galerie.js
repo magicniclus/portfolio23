@@ -100,7 +100,7 @@ const Galerie = () => {
     refs.current.forEach((el, idx) => {
       const timeline = gsap.timeline({
         defaults: {
-          duration: 0.5, // la moitié de la durée totale
+          duration: 0.5,
           delay: idx !== 0 ? 0.05 * idx : null,
           ease: "sine.out",
           scaleY: 0,
@@ -109,16 +109,8 @@ const Galerie = () => {
       });
 
       timeline
-        .fromTo(
-          el,
-          {},
-          { scaleY: 1 } // état à 50%
-        )
-        .fromTo(
-          el,
-          { scaleY: 2, opacity: 1 }, // nous avons déjà défini l'état initial dans la première animation
-          { scaleY: 1, x: 0, opacity: 1 } // état final
-        );
+        .fromTo(el, {}, { scaleY: 1 })
+        .fromTo(el, { scaleY: 2, opacity: 1 }, { scaleY: 1, x: 0, opacity: 1 });
     });
   }, [areImagesLoaded]);
 
@@ -214,11 +206,12 @@ const Galerie = () => {
               src={item.presentation}
               alt={item.title}
               onClick={(e) => handleClick(e, item.title, item.color)}
-              className="flex m-1 rounded-lg filter grayscale hover:grayscale-0 transition duration-500 ease-in-out cursor-pointer opacity-0"
+              className="flex m-1 rounded-lg filter grayscale hover:grayscale-0 transition duration-500 ease-in-out cursor-pointer opacity-0 sm:h-96 h-48 sm:max-w-[50px] max-w-[35px]"
               style={{
                 objectFit: "cover",
-                height: "400px",
-                width: "50px",
+                // height: "400px",
+                // maxHeight: "calc(100vh - 30%)",
+                // maxWidth: "50px",
                 transform: "translateX(1500px)",
               }}
               onMouseEnter={() =>
