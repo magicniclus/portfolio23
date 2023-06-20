@@ -49,38 +49,58 @@ const Footer = (props) => {
       }`}
     >
       <div className={`${props.reseauView ? "flex" : "hidden"}`}>
-        <Link className="mr-3 md:mr-5 overflow-hidden" href="/">
+        <a
+          className="mr-3 md:mr-5 overflow-hidden"
+          href="https://github.com/magicniclus"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             ref={gitRef}
             className={makeClass}
             src="./img/reseaux/github.png"
             style={{ color: color || "#D9D9D9" }}
           />
-        </Link>
-        <Link className="mr-3 md:mr-5 overflow-hidden" href="/">
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mr-3 md:mr-5 overflow-hidden"
+          href="https://www.linkedin.com/in/nicolas-castera-%F0%9F%AB%B5-adsventure-%F0%9F%A6%BE-771a45a6/"
+        >
           <img
             ref={linkdinRef}
             className={makeClass}
             src="./img/reseaux/linkdin.png"
             style={{ color: color || "#D9D9D9" }}
           />
-        </Link>
-        <Link className="mr-3 md:mr-5 overflow-hidden" href="/">
+        </a>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mr-3 md:mr-5 overflow-hidden"
+          href="https://twitter.com/CasteranicolasC"
+        >
           <img
             ref={twitterRef}
             className={makeClass}
             src="./img/reseaux/twitter.png"
             style={{ color: color || "#D9D9D9" }}
           />
-        </Link>
-        <Link className=" overflow-hidden" href="/">
+        </a>
+        <a
+          className="overflow-hidden"
+          href="mailto:casteranicolas.contact@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             ref={mailRef}
             className={makeClass}
             src="./img/reseaux/mail.png"
             style={{ color: color || "#D9D9D9" }}
           />
-        </Link>
+        </a>
       </div>
       <h2
         ref={titleRef}
