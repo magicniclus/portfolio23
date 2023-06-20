@@ -15,7 +15,7 @@ const Footer = (props) => {
 
   const dispatch = useDispatch();
 
-  const makeClass = `h-6 ${state.firstView ? "translate-y-6" : ""}`;
+  const makeClass = `md:h-6 h-3 ${state.firstView ? "translate-y-6" : ""}`;
 
   useEffect(() => {
     if (state.firstView) {
@@ -44,12 +44,12 @@ const Footer = (props) => {
 
   return (
     <footer
-      className={`w-full py-8 px-16 flex items-end justify-${
+      className={`w-full py-8  px-3 md:px-16 flex items-end justify-${
         props.reseauView ? "between" : "end"
       }`}
     >
       <div className={`${props.reseauView ? "flex" : "hidden"}`}>
-        <Link className="mr-5 overflow-hidden" href="/">
+        <Link className="mr-3 md:mr-5 overflow-hidden" href="/">
           <img
             ref={gitRef}
             className={makeClass}
@@ -57,7 +57,7 @@ const Footer = (props) => {
             style={{ color: color || "#D9D9D9" }}
           />
         </Link>
-        <Link className="mr-5 overflow-hidden" href="/">
+        <Link className="mr-3 md:mr-5 overflow-hidden" href="/">
           <img
             ref={linkdinRef}
             className={makeClass}
@@ -65,7 +65,7 @@ const Footer = (props) => {
             style={{ color: color || "#D9D9D9" }}
           />
         </Link>
-        <Link className="mr-5 overflow-hidden" href="/">
+        <Link className="mr-3 md:mr-5 overflow-hidden" href="/">
           <img
             ref={twitterRef}
             className={makeClass}
@@ -84,7 +84,7 @@ const Footer = (props) => {
       </div>
       <h2
         ref={titleRef}
-        className="font-light text-xs"
+        className="font-light text-xs md:text-left text-right "
         style={{ color: color || "#D9D9D9" }}
       >
         Front-end developer
