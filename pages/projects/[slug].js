@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { project } from "../../data/projects";
+import project from "../../data/projects";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import ProjectLayout from "../../components/layout/ProjectLayout";
 import { useSelector } from "react-redux";
@@ -245,11 +245,13 @@ const Projet = ({ post }) => {
 };
 
 export async function getStaticPaths() {
-  const paths = project.map((post) => ({
-    params: { slug: post.title },
+  const paths = project.map((project) => ({
+    params: { slug: project.title },
   }));
 
-  return { paths, fallback: true };
+  console.log(paths); // Log the paths to the console
+
+  return { paths, fallback: false };
 }
 
 export async function getStaticProps({ params }) {
