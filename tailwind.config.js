@@ -34,6 +34,7 @@ module.exports = {
         dark: "#011526",
         purple: "#4F46E5",
         purpleLight: "#DCDBEB",
+        redDark: "EE5E5E",
       },
     },
   },
