@@ -1,7 +1,9 @@
-import React, { useEffect, useState, useRef, use } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { ChevronRightIcon, HeartIcon } from "@heroicons/react/20/solid";
 import { gsap } from "gsap";
 import { useSelector } from "react-redux";
+import { generateUniqueId } from "../../../utils/generateUniqueId";
+import { writeUserData } from "../../../firebase/database";
 
 const FormulaireContact = () => {
   const state = useSelector((state) => state);
@@ -15,6 +17,60 @@ const FormulaireContact = () => {
     email: "",
     message: "",
   });
+
+  const [inputIsValid, setInputIsValid] = useState(null);
+
+  // Fonctions de validation
+  const validateName = (name) => {
+    // Permet uniquement les lettres et les espaces
+    const regex = /^[a-zA-Z ]{2,30}$/;
+    setForm({ ...form, name: name });
+    regex.test(name) ? setInputIsValid(true) : setInputIsValid(false);
+  };
+
+  const validateCompany = (company) => {
+    // Permet uniquement les lettres, les chiffres et les espaces
+    const regex = /^[a-zA-Z0-9 ]{2,30}$/;
+    setForm({ ...form, company: company });
+    regex.test(company) ? setInputIsValid(true) : setInputIsValid(false);
+  };
+
+  const validatePhone = (phone) => {
+    // Permet uniquement les chiffres, les espaces et les tirets (pour les indicatifs internationaux)
+    const regex = /^0[1-9]\d{8}$/;
+
+    setForm({ ...form, phone: phone });
+    regex.test(phone) ? setInputIsValid(true) : setInputIsValid(false);
+  };
+
+  const validateEmail = (email) => {
+    // Utilise une expression régulière simple pour la validation de l'email
+    const regex = /^\S+@\S+\.\S+$/;
+    setForm({ ...form, email: email });
+    regex.test(email.toLowerCase())
+      ? setInputIsValid(true)
+      : setInputIsValid(false);
+  };
+
+  useEffect(() => {
+    if (formIsSubmit) {
+      const userId = generateUniqueId();
+      writeUserData(
+        form.name,
+        form.company,
+        form.phone,
+        form.email,
+        form.message,
+        userId
+      )
+        .then((success) => {
+          console.log(success);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else null;
+  }, [formIsSubmit]);
 
   const [requireBtn, setRequireBtn] = useState(false);
 
@@ -65,7 +121,7 @@ const FormulaireContact = () => {
               className={makeInputClass}
               ref={inputOneRef}
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) => validateName(e.target.value)}
               require
             />
           </div>
@@ -79,7 +135,7 @@ const FormulaireContact = () => {
               className={makeInputClass}
               ref={inputTwoRef}
               value={form.company}
-              onChange={(e) => setForm({ ...form, company: e.target.value })}
+              onChange={(e) => validateCompany(e.target.value)}
               require
             />
           </div>
@@ -93,7 +149,7 @@ const FormulaireContact = () => {
               className={makeInputClass}
               ref={inputThreeRef}
               value={form.phone}
-              onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              onChange={(e) => validatePhone(e.target.value)}
               require
             />
           </div>
@@ -107,7 +163,7 @@ const FormulaireContact = () => {
               className={makeInputClass}
               ref={inputFourRef}
               value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
+              onChange={(e) => validateEmail(e.target.value)}
               require
             />
           </div>
@@ -135,7 +191,7 @@ const FormulaireContact = () => {
               className={makeInputClass}
               ref={inputOneRef}
               value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              onChange={(e) => validateName(e.target.value)}
               require
             />
           </div>
@@ -146,7 +202,7 @@ const FormulaireContact = () => {
   const updateFormNumber = async () => {
     const targetElement = targets();
 
-    if (formNumber != 4) {
+    if (formNumber != 4 && inputIsValid) {
       gsap.fromTo(
         targetElement,
         { y: 0, opacity: 1 },
@@ -156,7 +212,7 @@ const FormulaireContact = () => {
           ease: "power5.out",
           opacity: 0,
           onComplete: () => {
-            setFormNumber((e) => e + 1);
+            inputIsValid ? setFormNumber((e) => e + 1) : null;
           },
         }
       );
@@ -407,7 +463,11 @@ const FormulaireContact = () => {
       <div className="overflow-hidden ">
         <div
           ref={barRef}
-          className="h-0.5 bg-clear mt-1 w-8/12 md:w-10/12 max-w-[350px] translate-y-8 opacity-0"
+          className={`h-0.5 ${
+            inputIsValid === true || inputIsValid === null
+              ? "bg-clear"
+              : "bg-red-500"
+          } mt-1 w-8/12 md:w-10/12 max-w-[350px] translate-y-8 opacity-0`}
         ></div>
       </div>
     </div>
