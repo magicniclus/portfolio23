@@ -9,7 +9,7 @@ import { personalInformations } from "../../data/personalInformations";
 
 const index = () => {
   return (
-    <Layout>
+    <Layout title="Nicolas | About">
       <header>
         <Nav button="CLOSE" />
       </header>
