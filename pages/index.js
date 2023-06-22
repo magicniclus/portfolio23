@@ -39,7 +39,7 @@ export default function Home() {
   }, [state.projectIsOpen]);
 
   return (
-    <Layout>
+    <Layout title="Nicolas | Accueil">
       <header>
         <Nav />
       </header>
