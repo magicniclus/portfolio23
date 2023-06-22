@@ -1,4 +1,4 @@
-export const project = [
+const project = [
   {
     id: 1,
     title: "avenue-immo",
@@ -88,3 +88,5 @@ export const project = [
     client: "Portail-habitat",
   },
 ];
+
+export default project;
