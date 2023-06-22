@@ -231,7 +231,7 @@ const Projet = ({ post }) => {
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   className="w-6 h-6"
-                  style={{ color: post.textColor }}
+                  style={{ color: post ? post.textColor : "defaultColor" }}
                 >
                   <path
                     fillRule="evenodd"
