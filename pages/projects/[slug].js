@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import project from "../../data/projects";
+import { project } from "../../data/projects";
 import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
 import ProjectLayout from "../../components/layout/ProjectLayout";
 import { useSelector } from "react-redux";
