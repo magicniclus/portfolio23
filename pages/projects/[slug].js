@@ -88,12 +88,7 @@ const Projet = ({ post }) => {
   }, [state.changePage]);
 
   return (
-    <ProjectLayout
-      bg={post.color}
-      text={post.textColor}
-      all={post}
-      title={`Nicolas | ${post.title}`}
-    >
+    <ProjectLayout all={post} title={`Nicolas | ${post.title}`}>
       <main
         className="w-screen flex justify-center items-center h-full min-h-[calc(100vh-112px-80px)]  px-3 md:px-16"
         style={{ backgroundColor: post.color }}
@@ -231,12 +226,13 @@ const Projet = ({ post }) => {
                   viewBox="0 0 24 24"
                   fill="currentColor"
                   className="w-6 h-6"
-                  style={{ color: post ? post.textColor : "defaultColor" }}
+                  style={{ color: post.textColor }}
                 >
                   <path
                     fillRule="evenodd"
                     d="M15.75 2.25H21a.75.75 0 01.75.75v5.25a.75.75 0 01-1.5 0V4.81L8.03 17.03a.75.75 0 01-1.06-1.06L19.19 3.75h-3.44a.75.75 0 010-1.5zm-10.5 4.5a1.5 1.5 0 00-1.5 1.5v10.5a1.5 1.5 0 001.5 1.5h10.5a1.5 1.5 0 001.5-1.5V10.5a.75.75 0 011.5 0v8.25a3 3 0 01-3 3H5.25a3 3 0 01-3-3V8.25a3 3 0 013-3h8.25a.75.75 0 010 1.5H5.25z"
                     clipRule="evenodd"
+                    style={{ color: post.textColor }}
                   />
                 </svg>
               </a>
