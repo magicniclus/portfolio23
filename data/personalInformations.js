@@ -16,6 +16,8 @@ export const personalInformations = {
     "Firebase",
     "Google Api",
     "Mapbox",
+    "Strapi",
+    "Netlify",
   ],
   learning: ["Three Js", "Shopify"],
   certification: ["Google ads search"],
