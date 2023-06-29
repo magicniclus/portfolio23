@@ -153,17 +153,17 @@ const Projet = ({ post }) => {
                   A <span className="mx-2"></span> STATUS: {post.status}
                 </div>
               </li>
-              <li ref={yearsRef} className="mt-1 ">
+              <li ref={yearsRef} className="mt-1 opacity-0">
                 <div className=" overflow-hidden">
                   B <span className="mx-2"></span> COMPLETED: {post.years}
                 </div>
               </li>
-              <li ref={roleRef} className="mt-1 ">
+              <li ref={roleRef} className="mt-1 opacity-0">
                 <div className=" overflow-hidden">
                   C <span className="mx-2"></span> ROLE: {post.role}
                 </div>
               </li>
-              <li ref={clientRef} className="mt-1 ">
+              <li ref={clientRef} className="mt-1 opacity-0">
                 <div className=" overflow-hidden">
                   D <span className="mx-2"></span> CLIENT: {post.client}
                 </div>
