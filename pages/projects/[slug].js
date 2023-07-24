@@ -95,7 +95,7 @@ const Projet = ({ post }) => {
       text={post.textColor}
     >
       <main
-        className="w-screen flex justify-center items-center h-full min-h-[calc(100vh-112px-80px)]  px-3 md:px-16"
+        className="w-screen mx-auto max-w-[2000px] flex justify-center items-center h-full min-h-[calc(100vh-112px-80px)]  px-3 md:px-16"
         style={{ backgroundColor: post.color }}
       >
         <div className="flex md:flex-row flex-col justify-between">
