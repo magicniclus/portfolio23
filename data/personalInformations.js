@@ -5,6 +5,8 @@ export const personalInformations = {
     "Adsventure",
     "Avenue-immo",
     "Portail-habitat",
+    "Signature-Promotion",
+    "Conciergerie Castera",
   ],
   technologies: [
     "React Js",
